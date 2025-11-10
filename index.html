@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的摄影作品集</title>
+  <!-- 引入Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入Font Awesome图标 -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 自定义配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1a1a1a',
+            secondary: '#333333',
+            accent: '#f0f0f0',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .photo-hover {
+        @apply transition-all duration-500 hover:scale-[1.02] hover:shadow-xl;
+      }
+      .nav-link {
+        @apply relative px-4 py-2 text-gray-200 hover:text-white transition-colors;
+      }
+      .nav-link::after {
+        @apply content-[''] absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 -translate-x-1/2;
+      }
+      .nav-link:hover::after {
+        @apply w-4/5;
+      }
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans antialiased">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-black/80 backdrop-blur-sm">
+    <div class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+      <a href="#" class="text-2xl font-bold tracking-wider">PHOTO<span class="text-gray-400">GALLERY</span></a>
+      
+      <!-- 桌面端导航 -->
+      <nav class="hidden md:flex space-x-2">
+        <a href="#home" class="nav-link">首页</a>
+        <a href="#about" class="nav-link">关于我</a>
+        <a href="#portfolio" class="nav-link">作品集</a>
+        <a href="#contact" class="nav-link">联系我</a>
+      </nav>
+      
+      <!-- 移动端菜单按钮 -->
+      <button id="menuBtn" class="md:hidden text-white text-2xl">
+        <i class="fa fa-bars"></i>
+      </button>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobileMenu" class="hidden md:hidden bg-black/95 backdrop-blur-md absolute w-full">
+      <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <a href="#home" class="py-2 text-gray-200 hover:text-white transition-colors">首页</a>
+        <a href="#about" class="py-2 text-gray-200 hover:text-white transition-colors">关于我</a>
+        <a href="#portfolio" class="py-2 text-gray-200 hover:text-white transition-colors">作品集</a>
+        <a href="#contact" class="py-2 text-gray-200 hover:text-white transition-colors">联系我</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="https://picsum.photos/id/1039/1920/1080" alt="摄影作品封面" class="w-full h-full object-cover opacity-70">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80"></div>
+    </div>
+    <div class="container mx-auto px-4 md:px-8 relative z-10 text-center">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight">捕捉瞬间的美好</h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">我的摄影作品集，记录生活中的感动与风景</p>
+      <a href="#portfolio" class="inline-block bg-white text-black px-8 py-3 rounded-sm font-medium hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+        浏览作品 <i class="fa fa-arrow-down ml-2 animate-bounce"></i>
+      </a>
+    </div>
+    <div class="absolute bottom-8 left-0 right-0 text-center z-10">
+      <a href="#about" class="text-white/80 hover:text-white transition-colors">
+        <i class="fa fa-angle-down text-3xl animate-bounce"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- 关于我 -->
+  <section id="about" class="py-20 bg-primary">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="w-full md:w-1/3">
+          <div class="relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-gray-400 to-gray-600 rounded-sm blur-sm opacity-70"></div>
+            <img src="https://picsum.photos/id/1005/600/800" alt="摄影师照片" class="relative w-full h-auto object-cover rounded-sm photo-hover">
+          </div>
+        </div>
+        <div class="w-full md:w-2/3">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">关于我的摄影之旅</h2>
+          <p class="text-gray-300 mb-6 text-lg leading-relaxed">
+            大家好，我是一名热爱生活的摄影师，专注于风景、人像和纪实摄影。摄影对我而言，不仅是记录，更是一种表达情感、发现美好的方式。
+          </p>
+          <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+            从拿起相机的那一刻起，我就沉迷于捕捉那些转瞬即逝的瞬间。无论是壮丽的自然风光，还是人们脸上真挚的笑容，都能让我感受到生活的美好。
+            我相信每一张照片都有一个故事，而我的使命就是用镜头将这些故事传递给更多人。
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="text-center">
+              <p class="text-3xl font-bold mb-1">500+</p>
+              <p class="text-gray-400">拍摄作品</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold mb-1">30+</p>
+              <p class="text-gray-400">合作客户</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold mb-1">10+</p>
+              <p class="text-gray-400">摄影奖项</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl font-bold mb-1">8</p>
+              <p class="text-gray-400">摄影年限</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <a href="#portfolio" class="bg-white text-black px-6 py-3 rounded-sm font-medium hover:bg-gray-200 transition-colors">
+              查看作品集
+            </a>
+            <a href="#contact" class="bg-transparent border border-white text-white px-6 py-3 rounded-sm font-medium hover:bg-white/10 transition-colors">
+              联系我
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 作品集 -->
+  <section id="portfolio" class="py-20 bg-black">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">我的摄影作品</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg">每一张照片都是时光的见证，记录着生活中的美好瞬间</p>
+      </div>
+
+      <!-- 作品分类筛选 -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12" id="filterButtons">
+        <button class="filter-btn active bg-white text-black px-6 py-2 rounded-sm font-medium" data-filter="all">全部</button>
+        <button class="filter-btn bg-gray-800 text-white px-6 py-2 rounded-sm font-medium hover:bg-gray-700 transition-colors" data-filter="landscape">风景</button>
+        <button class="filter-btn bg-gray-800 text-white px-6 py-2 rounded-sm font-medium hover:bg-gray-700 transition-colors" data-filter="portrait">人像</button>
+        <button class="filter-btn bg-gray-800 text-white px-6 py-2 rounded-sm font-medium hover:bg-gray-700 transition-colors" data-filter="street">街拍</button>
+        <button class="filter-btn bg-gray-800 text-white px-6 py-2 rounded-sm font-medium hover:bg-gray-700 transition-colors" data-filter="nature">自然</button>
+      </div>
+
+      <!-- 作品网格 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 作品1 -->
+        <div class="portfolio-item" data-category="landscape">
+          <div class="relative overflow-hidden rounded-sm group">
+            <img src="https://picsum.photos/id/1036/800/1000" alt="山间湖泊" class="w-full h-80 object-cover photo-hover">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+              <h3 class="text-xl font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">山间湖泊</h3>
+              <p class="text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75">清晨的阳光洒在湖面上，波光粼粼</p>
+              <button class="view-photo mt-4 bg-white text-black px-4 py-2 rounded-sm transform translate-y-4 group-hover:translate-y-0 transition-transform delay-150 opacity-0 group-hover:opacity-100" data-img="https://picsum.photos/id/1036/1200/1600">
+                查看大图
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作品2 -->
+        <div class="portfolio-item" data-category="portrait">
+          <div class="relative overflow-hidden rounded-sm group">
+            <img src="https://picsum.photos/id/1011/800/1000" alt="人像摄影" class="w-full h-80 object-cover photo-hover">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+              <h3 class="text-xl font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">沉思</h3>
+              <p class="text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75">城市中的片刻宁静</p>
+              <button class="view-photo mt-4 bg-white text-black px-4 py-2 rounded-sm transform translate-y-4 group-hover:translate-y-0 transition-transform delay-150 opacity-0 group-hover:opacity-100" data-img="https://picsum.photos/id/1011/1200/1600">
+                查看大图
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作品3 -->
+        <div class="portfolio-item" data-category="street">
+          <div class="relative overflow-hidden rounded-sm group">
+            <img src="https://picsum.photos/id/1067/800/1000" alt="街头摄影" class="w-full h-80 object-cover photo-hover">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+              <h3 class="text-xl font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">城市节奏</h3>
+              <p class="text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75">繁忙都市中的行人</p>
+              <button class="view-photo mt-4 bg-white text-black px-4 py-2 rounded-sm transform translate-y-4 group-hover:translate-y-0 transition-transform delay-150 opacity-0 group-hover:opacity-100" data-img="https://picsum.photos/id/1067/1200/1600">
+                查看大图
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作品4 -->
+        <div class="portfolio-item" data-category="nature">
+          <div class="relative overflow-hidden rounded-sm group">
+            <img src="https://picsum.photos/id/1025/800/1000" alt="自然摄影" class="w-full h-80 object-cover photo-hover">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+              <h3 class="text-xl font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">森林之光</h3>
+              <p class="text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75">阳光穿透树叶的瞬间</p>
+              <button class="view-photo mt-4 bg-white text-black px-4 py-2 rounded-sm transform translate-y-4 group-hover:translate-y-0 transition-transform delay-150 opacity-0 group-hover:opacity-100" data-img="https://picsum.photos/id/1025/1200/1600">
+                查看大图
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作品5 -->
+        <div class="portfolio-item" data-category="landscape">
+          <div class="relative overflow-hidden rounded-sm group">
+            <img src="https://picsum.photos/id/1018/800/1000" alt="山脉摄影" class="w-full h-80 object-cover photo-hover">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+              <h3 class="text-xl font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">雪山之巅</h3>
+              <p class="text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75">纯净的自然景观</p>
+              <button class="view-photo mt-4 bg-white text-black px-4 py-2 rounded-sm transform translate-y-4 group-hover:translate-y-0 transition-transform delay-150 opacity-0 group-hover:opacity-100" data-img="https://picsum.photos/id/1018/1200/1600">
+                查看大图
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作品6 -->
+        <div class="portfolio-item" data-category="portrait">
+          <div class="relative overflow-hidden rounded-sm group">
+            <img src="https://picsum.photos/id/1003/800/1000" alt="人像摄影" class="w-full h-80 object-cover photo-hover">
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+              <h3 class="text-xl font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">微笑</h3>
+              <p class="text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75">最真挚的情感表达</p>
+              <button class="view-photo mt-4 bg-white text-black px-4 py-2 rounded-sm transform translate-y-4 group-hover:translate-y-0 transition-transform delay-150 opacity-0 group-hover:opacity-100" data-img="https://picsum.photos/id/1003/1200/1600">
+                查看大图
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 加载更多按钮 -->
+      <div class="text-center mt-12">
+        <button id="loadMore" class="bg-gray-800 text-white px-8 py-3 rounded-sm font-medium hover:bg-gray-700 transition-colors">
+          加载更多 <i class="fa fa-refresh ml-2"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系我 -->
+  <section id="contact" class="py-20 bg-primary">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">联系我</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg">如果您喜欢我的作品，或者有摄影相关的合作需求，欢迎随时联系我</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <form class="space-y-6">
+            <div>
+              <label for="name" class="block text-gray-300 mb-2">您的姓名</label>
+              <input type="text" id="name" class="w-full bg-gray-900 border border-gray-700 text-white px-4 py-3 rounded-sm focus:outline-none focus:border-white transition-colors" placeholder="请输入您的姓名">
+            </div>
+            <div>
+              <label for="email" class="block text-gray-300 mb-2">电子邮箱</label>
+              <input type="email" id="email" class="w-full bg-gray-900 border border-gray-700 text-white px-4 py-3 rounded-sm focus:outline-none focus:border-white transition-colors" placeholder="请输入您的电子邮箱">
+            </div>
+            <div>
+              <label for="message" class="block text-gray-300 mb-2">留言内容</label>
+              <textarea id="message" rows="5" class="w-full bg-gray-900 border border-gray-700 text-white px-4 py-3 rounded-sm focus:outline-none focus:border-white transition-colors" placeholder="请输入您的留言或合作需求"></textarea>
+            </div>
+            <button type="submit" class="bg-white text-black px-8 py-3 rounded-sm font-medium hover:bg-gray-200 transition-colors w-full md:w-auto">
+              发送留言 <i class="fa fa-paper-plane ml-2"></i>
+            </button>
+          </form>
+        </div>
+        <div class="flex flex-col justify-between">
+          <div>
+            <h3 class="text-2xl font-bold mb-6">联系方式</h3>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-center">
+                <i class="fa fa-envelope text-xl text-gray-400 mr-4"></i>
+                <span class="text-gray-300">contact@photogallery.com</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-phone text-xl text-gray-400 mr-4"></i>
+                <span class="text-gray-300">+86 138 **** 8888</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-map-marker text-xl text-gray-400 mr-4"></i>
+                <span class="text-gray-300">北京市朝阳区摄影工作室</span>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-6">关注我</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="bg-gray-800 hover:bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fa fa-weibo"></i>
+              </a>
+              <a href="#" class="bg-gray-800 hover:bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fa fa-wechat"></i>
+              </a>
+              <a href="#" class="bg-gray-800 hover:bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fa fa-instagram"></i>
+              </a>
+              <a href="#" class="bg-gray-800 hover:bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                <i class="fa fa-behance"></i>
+              </a>
+            </div>
+          </div>
+          <div class="mt-12">
+            <img src="https://picsum.photos/id/1048/600/400" alt="摄影工作室" class="w-full h-auto rounded-sm photo-hover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 照片预览模态框 -->
+  <div id="photoModal" class="fixed inset-0 z-50 bg-black/95 flex items-center justify-center hidden">
+    <button id="closeModal" class="absolute top-6 right-6 text-white text-3xl hover:text-gray-300 transition-colors">
+      <i class="fa fa-times"></i>
+    </button>
+    <div class="container mx-auto px-4 md:px-8 max-w-5xl">
+      <img id="modalImage" src="" alt="大图预览" class="w-full h-auto max-h-[90vh] object-contain">
+      <div class="text-center mt-4">
+        <h3 id="modalTitle" class="text-xl font-bold text-white"></h3>
+        <p id="modalDesc" class="text-gray-400 mt-2"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="bg-black py-12">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <a href="#" class="text-2xl font-bold tracking-wider">PHOTO<span class="text-gray-400">GALLERY</span></a>
+          <p class="text-gray-500 mt-2">© 2025 摄影作品集. 保留所有权利.</p>
+        </div>
+        <div class="flex space-x-6">
+          <a href="#home" class="text-gray-400 hover:text-white transition-colors">首页</a>
+          <a href="#about" class="text-gray-400 hover:text-white transition-colors">关于我</a>
+          <a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">作品集</a>
+          <a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系我</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('py-2');
+        navbar.classList.remove('py-4');
+        navbar.classList.add('bg-black/95');
+      } else {
+        navbar.classList.add('py-4');
+        navbar.classList.remove('py-2');
+        navbar.classList.add('bg-black/80');
+      }
+    });
+
+    // 移动端菜单
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuBtn.addEventListener('click', function() {
+      mobileMenu.classList.toggle('hidden');
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      menuBtn.innerHTML = isOpen ? '<i class="fa fa-times"></i>' : '<i class="fa fa-bars"></i>';
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        // 关闭移动端菜单
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          menuBtn.innerHTML = '<i class="fa fa-bars"></i>';
+        }
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // 作品筛选功能
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // 更新按钮样式
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-white', 'text-black');
+          btn.classList.add('bg-gray-800', 'text-white');
+        });
+        this.classList.add('active', 'bg-white', 'text-black');
+        this.classList.remove('bg-gray-800', 'text-white');
+        
+        const filter = this.getAttribute('data-filter');
+        
+        // 筛选作品
+        portfolioItems.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = 'block';
+            // 添加淡入动画
+            setTimeout(() => {
+              item.classList.add('opacity-100');
+              item.classList.remove('opacity-0');
+            }, 50);
+          } else {
+            item.classList.add('opacity-0');
+            item.classList.remove('opacity-100');
+            // 延迟隐藏，等待动画完成
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+
+    // 照片预览模态框
+    const photoModal = document.getElementById('photoModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeModal = document.getElementById('closeModal');
+    const viewPhotoButtons = document.querySelectorAll('.view-photo');
+    
+    viewPhotoButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const imgSrc = this.getAttribute('data-img');
+        const parentItem = this.closest('.group');
+        const title = parentItem.querySelector('h3').textContent;
+        const desc = parentItem.querySelector('p').textContent;
+        
+        modalImage.src = imgSrc;
+        modalTitle.textContent = title;
+        modalDesc.textContent = desc;
+        
+        photoModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    closeModal.addEventListener('click', function() {
+      photoModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    });
+    
+    // 点击模态框背景关闭
+    photoModal.addEventListener('click', function(e) {
+      if (e.target === photoModal) {
+        photoModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // 加载更多功能
+    const loadMoreBtn = document.getElementById('loadMore');
+    let isLoading = false;
+    
+    loadMoreBtn.addEventListener('click', function() {
+      if (isLoading) return;
+      
+      isLoading = true;
+      loadMoreBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 加载中...';
+      
+      // 模拟加载延迟
+      setTimeout(() => {
+        const portfolioGrid = document.querySelector('#portfolio .grid');
+        const categories = ['landscape', 'portrait', 'street', 'nature'];
+        const photoIds = [1043, 1059, 1063, 1071, 1074, 1080];
+        
+        for (let i = 0; i < 6; i++) {
+          const randomCat = categories[Math.floor(Math.random() * categories.length)];
+          const randomId = photoIds[Math.floor(Math.random() * photoIds.length)];
+          const titles = [
+            '城市夜景', '海边日落', '森林小径', '城市天际线', '田野风光', '人物肖像'
+          ];
+          const descs = [
+            '城市的灯光如同繁星点点', '夕阳西下，海面波光粼粼', '漫步在宁静的森林中', '现代化城市的壮丽景色', '一望无际的绿色田野', '记录真实的情感瞬间'
+          ];
+          
+          const randomTitle = titles[Math.floor(Math.random() * titles.length)];
+          const randomDesc = descs[Math.floor(Math.random() * descs.length)];
+          
+          const newItem = document.createElement('div');
+          newItem.className = 'portfolio-item';
+          newItem.setAttribute('data-category', randomCat);
+          newItem.innerHTML = `
+            <div class="relative overflow-hidden rounded-sm group">
+              <img src="https://picsum.photos/id/${randomId}/800/1000" alt="${randomTitle}" class="w-full h-80 object-cover photo-hover">
+              <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
+                <h3 class="text-xl font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">${randomTitle}</h3>
+                <p class="text-gray-300 transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75">${randomDesc}</p>
+                <button class="view-photo mt-4 bg-white text-black px-4 py-2 rounded-sm transform translate-y-4 group-hover:translate-y-0 transition-transform delay-150 opacity-0 group-hover:opacity-100" data-img="https://picsum.photos/id/${randomId}/1200/1600">
+                  查看大图
+                </button>
+              </div>
+            </div>
+          `;
+          
+          portfolioGrid.appendChild(newItem);
+          
+          // 为新添加的按钮添加事件监听
+          const newViewButton = newItem.querySelector('.view-photo');
+          newViewButton.addEventListener('click', function() {
+            const imgSrc = this.getAttribute('data-img');
+            const parentItem = this.closest('.group');
+            const title = parentItem.querySelector('h3').textContent;
+            const desc = parentItem.querySelector('p').textContent;
+            
+            modalImage.src = imgSrc;
+            modalTitle.textContent = title;
+            modalDesc.textContent = desc;
+            
+            photoModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+          });
+        }
+        
+        isLoading = false;
+        loadMoreBtn.innerHTML = '加载更多 <i class="fa fa-refresh ml-2"></i>';
+      }, 1500);
+    });
+
+    // 图片懒加载
+    document.addEventListener("DOMContentLoaded", function() {
+      const lazyImages = document.querySelectorAll("img");
+      
+      if ("IntersectionObserver" in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const image = entry.target;
+              image.classList.add('opacity-100');
+              image.classList.remove('opacity-0');
+              imageObserver.unobserve(image);
+            }
+          });
+        });
+        
+        lazyImages.forEach(image => {
+          image.classList.add('opacity-0', 'transition-opacity', 'duration-700');
+          imageObserver.observe(image);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
